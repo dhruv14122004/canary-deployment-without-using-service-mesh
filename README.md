@@ -61,7 +61,7 @@ app.get("/",(req,res)=>{
 app.listen(8080, ()=> console.log("Canary V2 is running"))
 ```
 
-## 🐳 Step 2 — Dockerfiles
+## �� Step 2 — Dockerfiles
 
 `Dockerfile-v1`
 
@@ -106,7 +106,6 @@ docker push <yourhub>/canary-app:v2
 `deployment_v1.yaml` (Stable)
 
 ```yaml
-apiVersion: apps/v1
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -221,13 +220,35 @@ Now 100% of users receive version v2.
 
 ## 📸 Screenshots
 
-Place the following images inside the `screenshots/` folder:
+Below are the screenshots (files under `screenshots/`). If you don't have them yet, add PNGs with these names and they will render.
 
-- `Screenshots/1st.png` — Output of `kubectl get pods`
-- `Screenshots/2nd.png` — Output of `kubectl describe svc myapp-service`
-- `minikube-url.png` — Output of `minikube service myapp-service --url`
-- `deployments.png` — Proof of applied deployments
-- `docker-images.png` — Docker images pushed
+![Pods output](screenshots/1st.png "kubectl get pods")
+
+*Output of* `kubectl get pods`
+
+![Service describe](screenshots/2nd.png "kubectl describe svc myapp-service")
+
+*Output of* `kubectl describe svc myapp-service`
+
+![Minikube URL output](screenshots/3rd.png "minikube service myapp-service --url")
+
+*Output of* `minikube service myapp-service --url`
+
+![Traffic test output](screenshots/4th.png "curl loop output")
+
+*Output of* `while true; do curl <url>; echo; sleep 0.5; done`
+
+![Rollback output](screenshots/5th.png "Rollback output")
+
+*Output of Rollback*
+
+![Promote output](screenshots/6th.png "Promote output")
+
+*Output of Promote*
+
+![Docker images pushed](screenshots/7th.png "Docker images")
+
+*Docker images pushed*
 
 ## 🎯 Conclusion
 
