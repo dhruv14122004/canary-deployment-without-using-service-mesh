@@ -223,10 +223,8 @@ Now 100% of users receive version v2.
 
 Place the following images inside the `screenshots/` folder:
 
-- `pods.png` — Output of `kubectl get pods`
-- `service.png` — Output of `kubectl describe svc myapp-service`
-- `v1-browser.png` — Browser showing v1 output
-- `v2-browser.png` — Browser showing v2 output
+- `Screenshots/1st.png` — Output of `kubectl get pods`
+- `Screenshots/2nd.png` — Output of `kubectl describe svc myapp-service`
 - `minikube-url.png` — Output of `minikube service myapp-service --url`
 - `deployments.png` — Proof of applied deployments
 - `docker-images.png` — Docker images pushed
