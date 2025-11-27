@@ -23,44 +23,48 @@ If something breaks → roll back quickly
 - YAML (Kubernetes manifests)
 
 ## 📁 Project Structure
-canary_project/
-│
-├── app_v1.js                  # Stable version
-├── app_v2.js                  # Canary version
-├── Dockerfile-v1
-├── Dockerfile-v2
-│
-├── deployment_v1.yaml         # Stable K8s deployment
-├── deployment_v2.yaml         # Canary K8s deployment
-├── services.yaml              # Exposes the app
-│
-└── screenshots/               # Proof & screenshots
+
+Repository root:
+
+- `app_v1.js`                  # Stable application (v1)
+- `app_v2.js`                  # Canary application (v2)
+- `Dockerfile-v1`              # Dockerfile for v1
+- `Dockerfile-v2`              # Dockerfile for v2
+- `deployment_v1.yaml`         # Stable Kubernetes deployment (v1)
+- `deployment_v2.yaml`         # Canary Kubernetes deployment (v2)
+- `services.yaml`              # Kubernetes Service
+- `package.json`               # Node.js dependencies
+- `README.md`                  # This file
+- `screenshots/`               # Proof and screenshots (optional)
 
 ## ⚙️ Step 1 — Create Application Files
 
 Version 1 (Stable) — `app_v1.js`
+
 ```js
-const express = require('express')
-const app = express()
-app.get("/",(req,res)=>{
-  res.send("It is the Stable Version")
-})
-app.listen(8080, ()=>console.log("Stable V1 is running"))
+const express = require("express");
+const app = express();
+app.get("/", (req, res) => {
+  res.send("Hello from Stable Version (v1)");
+});
+app.listen(8080, () => console.log("Stable v1 running"));
 ```
 
 Version 2 (Canary) — `app_v2.js`
+
 ```js
-const express = require('express')
-const app = express()
-app.get("/",(req,res)=>{
-  res.send("It is the canary Version")
-})
-app.listen(8080, ()=> console.log("Canary V2 is running"))
+const express = require("express");
+const app = express();
+app.get("/", (req, res) => {
+  res.send("Hello from Canary Version (v2)");
+});
+app.listen(8080, () => console.log("Canary v2 running"));
 ```
 
 ## 🐳 Step 2 — Dockerfiles
 
 `Dockerfile-v1`
+
 ```dockerfile
 FROM node:18
 WORKDIR /app
@@ -68,10 +72,11 @@ COPY package*.json ./
 RUN npm install
 COPY app_v1.js .
 EXPOSE 8080
-CMD ["node","app_v1.js"]
+CMD ["node", "app_v1.js"]
 ```
 
 `Dockerfile-v2`
+
 ```dockerfile
 FROM node:18
 WORKDIR /app
@@ -79,7 +84,7 @@ COPY package*.json ./
 RUN npm install
 COPY app_v2.js .
 EXPOSE 8080
-CMD ["node","app_v2.js"]
+CMD ["node", "app_v2.js"]
 ```
 
 ## 📦 Step 3 — Build & Push Docker Images
@@ -87,16 +92,19 @@ CMD ["node","app_v2.js"]
 Run:
 
 ```bash
-docker build -f Dockerfile-v1 -t dhruvsharmaa14/canary-app:v1 .
-docker push dhruvsharmaa14/canary-app:v1
+docker build -f Dockerfile-v1 -t <yourhub>/canary-app:v1 .
+docker push <yourhub>/canary-app:v1
 
-docker build -f Dockerfile-v2 -t dhruvsharmaa14/canary-app:v2 .
-docker push dhruvsharmaa14/canary-app:v2
+docker build -f Dockerfile-v2 -t <yourhub>/canary-app:v2 .
+docker push <yourhub>/canary-app:v2
 ```
+
+(Replace `<yourhub>` with your Docker Hub username or registry.)
 
 ## ☸️ Step 4 — Kubernetes Deployments
 
 `deployment_v1.yaml` (Stable)
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -114,12 +122,13 @@ spec:
     spec:
       containers:
       - name: app
-        image: dhruvsharmaa14/canary-app:v1
+        image: <yourhub>/canary-app:v1
         ports:
         - containerPort: 8080
 ```
 
 `deployment_v2.yaml` (Canary)
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -137,7 +146,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: dhruvsharmaa14/canary-app:v2
+        image: <yourhub>/canary-app:v2
         ports:
         - containerPort: 8080
 ```
@@ -145,6 +154,7 @@ spec:
 ## 🌐 Step 5 — Kubernetes Service
 
 `services.yaml`
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -202,7 +212,7 @@ Now 100% of traffic goes to the stable version (v1).
 If the canary is successful:
 
 ```bash
-kubectl set image deployment/app-v1 app=dhruvsharmaa14/canary-app:v2
+kubectl set image deployment/app-v1 app=<yourhub>/canary-app:v2
 kubectl delete deployment app-v2
 ```
 
