@@ -1,4 +1,4 @@
-🚀 Canary Deployment in Kubernetes (Beginner-Friendly Project)
+##🚀 Canary Deployment in Kubernetes (Beginner-Friendly Project)
 
 This project demonstrates a Canary Deployment in Kubernetes without using a service mesh.
 
