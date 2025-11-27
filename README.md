@@ -222,31 +222,35 @@ Now 100% of users receive version v2.
 
 Below are the screenshots (files under `screenshots/`). If you don't have them yet, add PNGs with these names and they will render.
 
-![Pods output](screenshots/1st.png "kubectl get pods")
+<img src="Screenshots/1st.png" alt="Pods output" style="max-width:100%; height:auto; display:block; margin:auto;" />
 
 *Output of* `kubectl get pods`
 
-![Service describe](screenshots/2nd.png "kubectl describe svc myapp-service")
+<img src="Screenshots/2nd.png" alt="Service describe" style="max-width:100%; height:auto; display:block; margin:auto;" />
 
 *Output of* `kubectl describe svc myapp-service`
 
-![Minikube URL output](screenshots/3rd.png "minikube service myapp-service --url")
+<img src="Screenshots/3rd.png" alt="Minikube URL output" style="max-width:100%; height:auto; display:block; margin:auto;" />
+
 
 *Output of* `minikube service myapp-service --url`
 
-![Traffic test output](screenshots/4th.png "curl loop output")
+<img src="Screenshots/4th.png" alt="Traffic test output" style="max-width:100%; height:auto; display:block; margin:auto;" />
+
 
 *Output of* `while true; do curl <url>; echo; sleep 0.5; done`
 
-![Rollback output](screenshots/5th.png "Rollback output")
+<img src="Screenshots/5th.png" alt="Rollback output" style="max-width:100%; height:auto; display:block; margin:auto;" />
+
 
 *Output of Rollback*
 
-![Promote output](screenshots/6th.png "Promote output")
+<img src="Screenshots/6th.png" alt="Promote output" style="max-width:100%; height:auto; display:block; margin:auto;" />
+
 
 *Output of Promote*
 
-![Docker images pushed](screenshots/7th.png "Docker images")
+<img src="Screenshots/7th.png" alt="Docker images pushed" style="max-width:100%; height:auto; display:block; margin:auto;" />
 
 *Docker images pushed*
 
