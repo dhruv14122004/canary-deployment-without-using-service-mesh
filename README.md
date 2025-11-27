@@ -40,22 +40,22 @@ canary_project/
 
 Version 1 (Stable) — `app_v1.js`
 ```js
-const express = require("express");
-const app = express();
-app.get("/", (req, res) => {
-  res.send("Hello from Stable Version (v1)");
-});
-app.listen(8080, () => console.log("Stable v1 running"));
+const express = require('express')
+const app = express()
+app.get("/",(req,res)=>{
+  res.send("It is the Stable Version")
+})
+app.listen(8080, ()=>console.log("Stable V1 is running"))
 ```
 
 Version 2 (Canary) — `app_v2.js`
 ```js
-const express = require("express");
-const app = express();
-app.get("/", (req, res) => {
-  res.send("Hello from Canary Version (v2)");
-});
-app.listen(8080, () => console.log("Canary v2 running"));
+const express = require('express')
+const app = express()
+app.get("/",(req,res)=>{
+  res.send("It is the canary Version")
+})
+app.listen(8080, ()=> console.log("Canary V2 is running"))
 ```
 
 ## 🐳 Step 2 — Dockerfiles
@@ -68,7 +68,7 @@ COPY package*.json ./
 RUN npm install
 COPY app_v1.js .
 EXPOSE 8080
-CMD ["node", "app_v1.js"]
+CMD ["node","app_v1.js"]
 ```
 
 `Dockerfile-v2`
@@ -79,7 +79,7 @@ COPY package*.json ./
 RUN npm install
 COPY app_v2.js .
 EXPOSE 8080
-CMD ["node", "app_v2.js"]
+CMD ["node","app_v2.js"]
 ```
 
 ## 📦 Step 3 — Build & Push Docker Images
@@ -232,4 +232,4 @@ This project demonstrates:
 ## ✨ Author
 
 Dhruv Sharma
-B.Tech — JK Lakshmipat University# canary-deployment-without-using-service-mesh
+B.Tech — JK Lakshmipat University
