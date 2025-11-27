@@ -1,10 +1,10 @@
-#🚀 Canary Deployment in Kubernetes (Beginner-Friendly Project)
+# 🚀 Canary Deployment in Kubernetes (Beginner-Friendly Project)
 
 This project demonstrates a Canary Deployment in Kubernetes without using a service mesh.
 
 A canary deployment lets you release a new version of your application to a small percentage of users before rolling it out to everyone.
 
-#📌 What is Canary Deployment?
+## 📌 What is Canary Deployment?
 
 A canary deployment is a rollout strategy where:
 
@@ -14,7 +14,7 @@ A canary deployment is a rollout strategy where:
 If everything works well → promote the canary
 If something breaks → roll back quickly
 
-#🛠 Technologies Used
+## 🛠 Technologies Used
 
 - Node.js (simple backend app)
 - Docker (containerization)
@@ -22,7 +22,7 @@ If something breaks → roll back quickly
 - kubectl (Kubernetes CLI)
 - YAML (Kubernetes manifests)
 
-#📁 Project Structure
+## 📁 Project Structure
 canary_project/
 │
 ├── app_v1.js                  # Stable version
@@ -36,7 +36,7 @@ canary_project/
 │
 └── screenshots/               # Proof & screenshots
 
-#⚙️ Step 1 — Create Application Files
+## ⚙️ Step 1 — Create Application Files
 
 Version 1 (Stable) — `app_v1.js`
 ```js
@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
 app.listen(8080, () => console.log("Canary v2 running"));
 ```
 
-#🐳 Step 2 — Dockerfiles
+## 🐳 Step 2 — Dockerfiles
 
 `Dockerfile-v1`
 ```dockerfile
@@ -82,7 +82,7 @@ EXPOSE 8080
 CMD ["node", "app_v2.js"]
 ```
 
-#📦 Step 3 — Build & Push Docker Images
+## 📦 Step 3 — Build & Push Docker Images
 
 Run:
 
@@ -94,7 +94,7 @@ docker build -f Dockerfile-v2 -t dhruvsharmaa14/canary-app:v2 .
 docker push dhruvsharmaa14/canary-app:v2
 ```
 
-#☸️ Step 4 — Kubernetes Deployments
+## ☸️ Step 4 — Kubernetes Deployments
 
 `deployment_v1.yaml` (Stable)
 ```yaml
@@ -142,7 +142,7 @@ spec:
         - containerPort: 8080
 ```
 
-#🌐 Step 5 — Kubernetes Service
+## 🌐 Step 5 — Kubernetes Service
 
 `services.yaml`
 ```yaml
@@ -160,7 +160,7 @@ spec:
     nodePort: 30080
 ```
 
-#🚀 Step 6 — Deploy to Kubernetes
+## 🚀 Step 6 — Deploy to Kubernetes
 
 ```bash
 kubectl apply -f deployment_v1.yaml
@@ -179,7 +179,7 @@ You should see:
 - 3 pods → v1 (stable)
 - 1 pod → v2 (canary)
 
-#🌍 Step 7 — Access the Application
+## 🌍 Step 7 — Access the Application
 
 ```bash
 minikube service myapp-service --url
@@ -187,7 +187,7 @@ minikube service myapp-service --url
 
 Open the generated URL in your browser. Refresh multiple times — you should mostly see the stable version and occasionally the canary.
 
-#🔄 Step 8 — Rollback Canary Version
+## 🔄 Step 8 — Rollback Canary Version
 
 If the canary has issues:
 
@@ -197,7 +197,7 @@ kubectl delete deployment app-v2
 
 Now 100% of traffic goes to the stable version (v1).
 
-#⬆️ Step 9 — Promote Canary → Stable
+## ⬆️ Step 9 — Promote Canary → Stable
 
 If the canary is successful:
 
@@ -208,7 +208,7 @@ kubectl delete deployment app-v2
 
 Now 100% of users receive version v2.
 
-#📸 Screenshots
+## 📸 Screenshots
 
 Place the following images inside the `screenshots/` folder:
 
@@ -220,7 +220,7 @@ Place the following images inside the `screenshots/` folder:
 - `deployments.png` — Proof of applied deployments
 - `docker-images.png` — Docker images pushed
 
-#🎯 Conclusion
+## 🎯 Conclusion
 
 This project demonstrates:
 
@@ -229,7 +229,7 @@ This project demonstrates:
 - Multi-version Kubernetes deployment
 - Rollback and promotion strategies
 
-#✨ Author
+## ✨ Author
 
 Dhruv Sharma
 B.Tech — JK Lakshmipat University# canary-deployment-without-using-service-mesh
